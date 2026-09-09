@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIVOX — Women's Fashion</title>
+<style>
+:root{--ink:#242424;--muted:#777;--line:#e9e4dd;--cream:#faf8f4;--accent:#b27a36;--pink:#8e3d58}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
+button,input{font:inherit}.topbar{background:var(--pink);color:#fff;text-align:center;padding:11px 16px;font-size:13px;letter-spacing:.5px}
+.header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:20}
+.headrow{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 34px 10px}
+.menu-btn,.icon-btn{border:0;background:none;cursor:pointer;font-size:23px}.menu-btn{width:80px;text-align:left}
+.logo{font-size:42px;font-weight:800;letter-spacing:5px}.logo span{color:var(--accent)}
+.icons{display:flex;gap:15px;align-items:center}.cart-icon{position:relative}.count{position:absolute;right:-8px;top:-7px;background:var(--pink);color:#fff;border-radius:50%;font-size:10px;width:18px;height:18px;display:grid;place-items:center}
+.nav{max-width:1120px;margin:auto;display:flex;justify-content:center;gap:34px;padding:12px 20px 17px;font-size:14px;letter-spacing:1px;flex-wrap:wrap}
+.nav a{text-decoration:none;color:var(--ink)}.nav a:hover,.nav a.active{color:var(--accent);font-weight:700}
+.searchbar{display:none;max-width:700px;margin:0 auto 14px;padding:0 20px}.searchbar.open{display:flex}
+.searchbar input{width:100%;padding:13px 16px;border:1px solid #ddd;outline:none}
+.hero{min-height:500px;background:linear-gradient(90deg,rgba(20,20,20,.48),rgba(20,20,20,.05)),url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1800&q=85') center/cover;display:flex;align-items:center}
+.hero-content{max-width:1400px;width:100%;margin:auto;padding:70px}.hero h1{font-size:68px;color:#fff;max-width:620px;margin:0 0 16px;line-height:1.05;letter-spacing:2px}.hero p{color:#fff;font-size:18px;max-width:460px;line-height:1.6}
+.btn{display:inline-block;background:#fff;color:#222;border:0;text-decoration:none;padding:15px 28px;margin-top:16px;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer}
+.section{max-width:1450px;margin:70px auto;padding:0 32px}.title{text-align:center;font-size:34px;margin-bottom:12px}.subtitle{text-align:center;color:var(--muted);margin-bottom:38px}
+.collections{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.collection{height:390px;position:relative;overflow:hidden;cursor:pointer}.collection img{width:100%;height:100%;object-fit:cover;transition:.3s}.collection:hover img{transform:scale(1.04)}
+.collection .overlay{position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.6));display:flex;align-items:flex-end;padding:28px;color:#fff}.collection h3{font-size:27px;margin:0}
+.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:28px}.filter{border:1px solid #ddd;background:#fff;padding:10px 18px;cursor:pointer}.filter.active,.filter:hover{background:#222;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.card{position:relative;background:var(--cream);overflow:hidden}.card img{width:100%;height:430px;object-fit:cover;display:block;transition:.3s}.card:hover img{transform:scale(1.02)}
+.badge{position:absolute;top:12px;left:12px;background:#d28c2c;color:#fff;padding:7px 11px;font-size:11px;z-index:2}.heart{position:absolute;right:12px;top:10px;border:0;background:#fff;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;z-index:2}.heart.liked{color:#b22}
+.info{padding:16px}.info h3{font-size:15px;margin:0 0 8px}.price{font-weight:700}.old{color:#999;text-decoration:line-through;margin-left:8px;font-weight:400}.add{width:100%;margin-top:12px;border:1px solid #222;background:#222;color:#fff;padding:12px;cursor:pointer}.add:hover{background:#444}
+.no-results{text-align:center;color:#777;padding:30px;display:none}
+.sale{background:#f4ece4;padding:65px 30px;text-align:center;margin-top:80px}.sale h2{font-size:45px;margin:0 0 10px}.sale p{color:#666;font-size:17px}
+.footer{background:#202020;color:#eee;padding:50px 34px;margin-top:70px}.footer-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer h4{letter-spacing:1px}.footer p{color:#aaa;line-height:1.8;font-size:14px}
+.drawer{position:fixed;inset:0;z-index:50;pointer-events:none}.drawer.show{pointer-events:auto}.shade{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:.25s}.drawer.show .shade{opacity:1}
+.panel{position:absolute;right:0;top:0;height:100%;width:min(430px,92vw);background:#fff;transform:translateX(100%);transition:.25s;padding:24px;overflow:auto}.drawer.show .panel{transform:translateX(0)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:16px}.close{border:0;background:none;font-size:28px;cursor:pointer}.cart-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #eee}.cart-item img{width:80px;height:95px;object-fit:cover}.cart-item h4{margin:0 0 7px}.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{border:1px solid #ddd;background:#fff;width:28px;height:28px;cursor:pointer}.remove{margin-left:auto;border:0;background:none;color:#999;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:18px;font-weight:700;margin-top:20px}.checkout{width:100%;padding:15px;background:#222;color:#fff;border:0;margin-top:16px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#222;color:#fff;padding:12px 20px;border-radius:4px;opacity:0;transition:.25s;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.collections{grid-template-columns:1fr}.hero h1{font-size:48px}.hero-content{padding:40px 25px}.nav{gap:16px}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.headrow{padding:15px}.logo{font-size:31px}.menu-btn{width:55px}.grid{grid-template-columns:1fr}.card img{height:470px}.footer-grid{grid-template-columns:1fr}.hero{min-height:440px}.hero h1{font-size:40px}.nav{font-size:12px;gap:12px}.icons{gap:8px}}
+</style>
+</head>
+<body>
+<div class="topbar">GET 10% OFF ON YOUR FIRST ORDER • CODE: RIVOX10 • FREE SHIPPING ABOVE ₹999</div>
+
+<header class="header">
+  <div class="headrow">
+    <button class="menu-btn" onclick="showToast('Menu coming soon')">☰</button>
+    <a href="#" class="logo" style="text-decoration:none;color:var(--ink)">RIV<span>O</span>X</a>
+    <div class="icons">
+      <button class="icon-btn" onclick="toggleSearch()" aria-label="Search">⌕</button>
+      <button class="icon-btn" onclick="scrollToWishlist()" aria-label="Wishlist">♡</button>
+      <button class="icon-btn cart-icon" onclick="openCart()" aria-label="Cart">🛒<span class="count" id="cartCount">0</span></button>
+    </div>
+  </div>
+  <div class="searchbar" id="searchbar"><input id="searchInput" type="search" placeholder="Search kurtis, dresses, co-ord sets..." oninput="renderProducts()"></div>
+  <nav class="nav">
+    <a href="#shop" class="active">NEW ARRIVALS</a>
+    <a href="#shop">BESTSELLERS</a>
+    <a href="#shop" onclick="setCategory('Kurtis')">KURTIS</a>
+    <a href="#shop" onclick="setCategory('Suits & Sets')">SUITS & SETS</a>
+    <a href="#shop" onclick="setCategory('Dresses')">DRESSES</a>
+    <a href="#shop" onclick="setCategory('Co-ord Sets')">CO-ORD SETS</a>
+    <a href="#shop" onclick="setCategory('Sale')">SALE</a>
+    <a href="#story">OUR STORY</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Made for the modern woman.</h1>
+    <p>Discover elegant ethnic and contemporary fashion designed to make every day feel special.</p>
+    <a class="btn" href="#shop">SHOP NEW ARRIVALS</a>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">Shop by Collection</h2>
+  <p class="subtitle">Find your perfect RIVOX look</p>
+  <div class="collections">
+    <div class="collection" onclick="setCategory('Kurtis');location.hash='shop'"><img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=900&q=85"><div class="overlay"><h3>Elegant Kurtis</h3></div></div>
+    <div class="collection" onclick="setCategory('Suits & Sets');location.hash='shop'"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=900&q=85"><div class="overlay"><h3>Festive Styles</h3></div></div>
+    <div class="collection" onclick="setCategory('Dresses');location.hash='shop'"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85"><div class="overlay"><h3>Everyday Fashion</h3></div></div>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <h2 class="title">RIVOX Collection</h2>
+  <p class="subtitle">Fresh styles, ready for your wardrobe</p>
+  <div class="filters">
+    <button class="filter active" onclick="setCategory('All')">All</button>
+    <button class="filter" onclick="setCategory('Kurtis')">Kurtis</button>
+    <button class="filter" onclick="setCategory('Suits & Sets')">Suits & Sets</button>
+    <button class="filter" onclick="setCategory('Dresses')">Dresses</button>
+    <button class="filter" onclick="setCategory('Co-ord Sets')">Co-ord Sets</button>
+    <button class="filter" onclick="setCategory('Sale')">Sale</button>
+  </div>
+  <div class="grid" id="productGrid"></div>
+  <div class="no-results" id="noResults">No products found. Try another search.</div>
+</section>
+
+<section class="sale" id="story">
+  <h2>The RIVOX Edit</h2>
+  <p>Effortless fashion. Premium comfort. Timeless style.</p>
+  <a class="btn" style="background:#222;color:#fff" href="#shop">EXPLORE COLLECTION</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="logo" style="color:#fff;font-size:30px">RIV<span>O</span>X</div><p>Contemporary women's fashion created for confidence, comfort and effortless style.</p></div>
+    <div><h4>SHOP</h4><p>New Arrivals<br>Kurtis<br>Suits & Sets<br>Sale</p></div>
+    <div><h4>HELP</h4><p>Contact Us<br>Shipping & Returns<br>Track Order<br>Size Guide</p></div>
+    <div><h4>NEWSLETTER</h4><p>Get exclusive offers and new collection updates.</p><div style="border-bottom:1px solid #777;padding-bottom:10px;color:#aaa">Your email address →</div></div>
+  </div>
+</footer>
+
+<div class="drawer" id="cartDrawer">
+  <div class="shade" onclick="closeCart()"></div>
+  <aside class="panel">
+    <div class="panel-head"><h2 style="margin:0">Your Cart</h2><button class="close" onclick="closeCart()">×</button></div>
+    <div id="cartItems"></div>
+    <div id="cartEmpty" style="text-align:center;color:#777;padding:45px 10px">Your cart is empty.</div>
+    <div id="cartBottom" style="display:none">
+      <div class="total"><span>Total</span><span id="cartTotal">₹0</span></div>
+      <button class="checkout" onclick="showToast('Checkout will be connected next')">PROCEED TO CHECKOUT</button>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const products=[
+{id:9,name:'Black Floral Midi Dress',cat:'Dresses',price:899,old:1999,img:'black-floral-dress.png'},
+{id:1,name:'Azure Blue Kurti',cat:'Kurtis',price:1499,old:1999,img:'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=85'},
+{id:2,name:'Rosewood Classic Dress',cat:'Dresses',price:1899,old:null,img:'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=700&q=85'},
+{id:3,name:'Emerald Green Kurti',cat:'Kurtis',price:1599,old:null,img:'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85'},
+{id:4,name:'Blush Pink Co-ord',cat:'Co-ord Sets',price:2199,old:null,img:'https://images.unsplash.com/photo-1566206091558-7f218b696731?auto=format&fit=crop&w=700&q=85'},
+{id:5,name:'Ivory Festive Set',cat:'Suits & Sets',price:2499,old:2999,img:'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=700&q=85'},
+{id:6,name:'Midnight Floral Dress',cat:'Dresses',price:1799,old:2299,img:'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=85'},
+{id:7,name:'Sand Beige Co-ord',cat:'Co-ord Sets',price:1999,old:null,img:'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=85'},
+{id:8,name:'Maroon Celebration Suit',cat:'Suits & Sets',price:2799,old:3299,img:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=85'}
+];
+let category='All',cart=JSON.parse(localStorage.getItem('rivoxCart')||'[]'),likes=JSON.parse(localStorage.getItem('rivoxLikes')||'[]');
+
+function money(n){return '₹'+n.toLocaleString('en-IN')}
+function renderProducts(){
+ const q=(document.getElementById('searchInput').value||'').toLowerCase();
+ const list=products.filter(p=>(category==='All'||(category==='Sale'?(p.old&&p.old>p.price):p.cat===category)) && (!q||p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ const grid=document.getElementById('productGrid'); document.getElementById('noResults').style.display=list.length?'none':'block';
+ grid.innerHTML=list.map(p=>`<article class="card"><span class="badge">${p.old?'SALE':'NEW'}</span><button class="heart ${likes.includes(p.id)?'liked':''}" onclick="toggleLike(${p.id})">${likes.includes(p.id)?'♥':'♡'}</button><img src="${p.img}" alt="${p.name}" loading="lazy"><div class="info"><h3>${p.name}</h3><div class="price">${money(p.price)} ${p.old?`<span class="old">${money(p.old)}</span>`:''}</div><button class="add" onclick="addToCart(${p.id})">ADD TO CART</button></div></article>`).join('');
+ document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.textContent.trim()===category));
+}
+function setCategory(c){category=c;renderProducts();document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
+function toggleSearch(){document.getElementById('searchbar').classList.toggle('open');if(document.getElementById('searchbar').classList.contains('open'))document.getElementById('searchInput').focus();}
+function toggleLike(id){likes=likes.includes(id)?likes.filter(x=>x!==id):[...likes,id];localStorage.setItem('rivoxLikes',JSON.stringify(likes));renderProducts();showToast(likes.includes(id)?'Added to wishlist ♥':'Removed from wishlist');}
+function scrollToWishlist(){showToast('Wishlist is active on each product ♥');document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
+function addToCart(id){const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});saveCart();openCart();showToast('Added to cart 🛒');}
+function saveCart(){localStorage.setItem('rivoxCart',JSON.stringify(cart));renderCart();document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);}
+function changeQty(id,d){const item=cart.find(x=>x.id===id);if(!item)return;item.qty+=d;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);saveCart();}
+function renderCart(){
+ const box=document.getElementById('cartItems'),empty=document.getElementById('cartEmpty'),bottom=document.getElementById('cartBottom');
+ if(!cart.length){box.innerHTML='';empty.style.display='block';bottom.style.display='none';return}
+ empty.style.display='none';bottom.style.display='block';
+ box.innerHTML=cart.map(x=>{const p=products.find(a=>a.id===x.id);return `<div class="cart-item"><img src="${p.img}" alt="${p.name}"><div style="flex:1"><h4>${p.name}</h4><div>${money(p.price)}</div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${p.id},1)">+</button><button class="remove" onclick="removeItem(${p.id})">Remove</button></div></div></div>`}).join('');
+ document.getElementById('cartTotal').textContent=money(cart.reduce((s,x)=>s+(products.find(p=>p.id===x.id).price*x.qty),0));
+}
+function openCart(){document.getElementById('cartDrawer').classList.add('show');renderCart()}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('show')}
+let toastTimer;function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1800)}
+renderProducts();saveCart();
+</script>
+</body>
+</html>
