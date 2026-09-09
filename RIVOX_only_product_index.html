@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIVOX — Black Floral Midi Dress</title>
+<style>
+:root{--ink:#222;--muted:#777;--line:#e8e3dd;--cream:#faf8f4;--accent:#b27a36;--pink:#8e3d58}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}
+button,input{font:inherit;cursor:pointer}
+.topbar{background:var(--pink);color:#fff;text-align:center;padding:11px 16px;font-size:13px;letter-spacing:.4px}
+.header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:20}
+.headrow{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 34px 12px}
+.menu-btn,.icon-btn{border:0;background:none;font-size:23px}.menu-btn{width:80px;text-align:left}
+.logo{font-size:42px;font-weight:800;letter-spacing:5px}.logo span{color:var(--accent)}
+.icons{display:flex;gap:15px;align-items:center}.cart-icon{position:relative}.count{position:absolute;right:-8px;top:-7px;background:var(--pink);color:#fff;border-radius:50%;font-size:10px;width:18px;height:18px;display:grid;place-items:center}
+.nav{display:flex;justify-content:center;gap:38px;padding:10px 20px 17px;font-size:14px;letter-spacing:1px}
+.nav a{text-decoration:none;color:var(--ink)}.nav a:hover{color:var(--accent)}
+.searchbar{display:none;max-width:700px;margin:0 auto 14px;padding:0 20px}.searchbar.open{display:flex}
+.searchbar input{width:100%;padding:13px 16px;border:1px solid #ddd;outline:none}
+.hero{background:linear-gradient(135deg,#f3ece5,#fff);padding:70px 25px;text-align:center}
+.hero h1{font-size:56px;margin:0 0 14px;letter-spacing:1px}.hero p{color:#666;font-size:18px;margin:0 auto 24px;max-width:650px;line-height:1.6}
+.btn{display:inline-block;background:#222;color:#fff;text-decoration:none;border:0;padding:14px 27px;font-size:13px;font-weight:700;letter-spacing:1px}
+.section{max-width:1250px;margin:65px auto;padding:0 25px}.title{text-align:center;font-size:34px;margin-bottom:10px}.subtitle{text-align:center;color:var(--muted);margin-bottom:35px}
+.grid{display:grid;grid-template-columns:minmax(280px,430px);justify-content:center}
+.card{position:relative;background:var(--cream);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.card img{width:100%;height:520px;object-fit:cover;display:block}
+.badge{position:absolute;top:12px;left:12px;background:#d28c2c;color:#fff;padding:7px 11px;font-size:11px;z-index:2}
+.heart{position:absolute;right:12px;top:10px;border:0;background:#fff;width:40px;height:40px;border-radius:50%;font-size:21px;z-index:2}
+.heart.liked{color:#b22}.info{padding:18px}.info h3{font-size:18px;margin:0 0 10px}.price{font-weight:700;font-size:18px}
+.old{color:#999;text-decoration:line-through;margin-left:8px;font-weight:400;font-size:15px}
+.off{display:inline-block;margin-left:8px;color:#8e3d58;font-size:12px;font-weight:700}
+.label{font-size:13px;font-weight:700;margin-top:20px}.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.size{border:1px solid #ccc;background:#fff;padding:9px 14px;font-size:13px}.size.selected{background:#222;color:#fff;border-color:#222}
+.add{width:100%;margin-top:16px;border:0;background:#222;color:#fff;padding:14px;font-weight:700;letter-spacing:1px}.add:hover{background:#444}
+.services{max-width:1100px;margin:10px auto 70px;padding:0 25px;display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.service{text-align:center;padding:24px 10px;border:1px solid var(--line);background:#fff}.service b{display:block;margin-bottom:7px}.service span{font-size:13px;color:#777}
+.footer{background:#202020;color:#eee;padding:50px 25px}.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}.footer p{color:#aaa;line-height:1.7;font-size:14px}
+.drawer{position:fixed;inset:0;z-index:50;pointer-events:none}.drawer.show{pointer-events:auto}.shade{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:.25s}.drawer.show .shade{opacity:1}
+.panel{position:absolute;right:0;top:0;height:100%;width:min(430px,92vw);background:#fff;transform:translateX(100%);transition:.25s;padding:24px;overflow:auto}.drawer.show .panel{transform:translateX(0)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:16px}.close{border:0;background:none;font-size:28px}
+.cart-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #eee}.cart-item img{width:80px;height:95px;object-fit:cover}.cart-item h4{margin:0 0 7px}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{border:1px solid #ddd;background:#fff;width:28px;height:28px}.remove{margin-left:auto;border:0;background:none;color:#999}
+.total{display:flex;justify-content:space-between;font-size:18px;font-weight:700;margin-top:20px}.checkout{width:100%;padding:15px;background:#222;color:#fff;border:0;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#222;color:#fff;padding:12px 20px;border-radius:4px;opacity:0;transition:.25s;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.headrow{padding:15px}.logo{font-size:31px}.menu-btn{width:55px}.nav{gap:18px;font-size:12px}.hero h1{font-size:40px}.card img{height:500px}.services{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">FREE SHIPPING ABOVE ₹999 • EASY 7-DAY RETURNS • CASH ON DELIVERY</div>
+
+<header class="header">
+  <div class="headrow">
+    <button class="menu-btn" onclick="showToast('Menu coming soon')">☰</button>
+    <a href="#" class="logo" style="text-decoration:none;color:var(--ink)">RIV<span>O</span>X</a>
+    <div class="icons">
+      <button class="icon-btn" onclick="toggleSearch()" aria-label="Search">⌕</button>
+      <button class="icon-btn" onclick="scrollToProduct()" aria-label="Wishlist">♡</button>
+      <button class="icon-btn cart-icon" onclick="openCart()" aria-label="Cart">🛒<span class="count" id="cartCount">0</span></button>
+    </div>
+  </div>
+  <div class="searchbar" id="searchbar"><input id="searchInput" type="search" placeholder="Search Black Floral Midi Dress..." oninput="renderProduct()"></div>
+  <nav class="nav">
+    <a href="#shop">NEW ARRIVALS</a>
+    <a href="#shop">DRESSES</a>
+    <a href="#story">OUR STORY</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Made for the modern woman.</h1>
+  <p>Discover the latest RIVOX piece — elegant, effortless and made to stand out.</p>
+  <a class="btn" href="#shop">SHOP NOW</a>
+</section>
+
+<section class="section" id="shop">
+  <h2 class="title">New Arrival</h2>
+  <p class="subtitle">Our featured RIVOX product</p>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<section class="services">
+  <div class="service"><b>Free Shipping</b><span>On orders above ₹999</span></div>
+  <div class="service"><b>7-Day Returns</b><span>Easy return policy</span></div>
+  <div class="service"><b>Secure Payments</b><span>Safe & trusted checkout</span></div>
+  <div class="service"><b>Cash on Delivery</b><span>Available on eligible orders</span></div>
+</section>
+
+<section class="hero" id="story" style="padding:55px 25px">
+  <h2 style="margin:0 0 10px;font-size:36px">The RIVOX Story</h2>
+  <p style="margin-bottom:0">Contemporary women's fashion with confidence, comfort and effortless style.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="logo" style="color:#fff;font-size:30px">RIV<span>O</span>X</div><p>Premium women's fashion made for everyday confidence.</p></div>
+    <div><h4>SHOP</h4><p>New Arrivals<br>Dresses<br>Sale</p></div>
+    <div><h4>HELP</h4><p>Contact Us<br>Shipping & Returns<br>Size Guide</p></div>
+  </div>
+</footer>
+
+<div class="drawer" id="cartDrawer">
+  <div class="shade" onclick="closeCart()"></div>
+  <aside class="panel">
+    <div class="panel-head"><h2 style="margin:0">Your Cart</h2><button class="close" onclick="closeCart()">×</button></div>
+    <div id="cartItems"></div>
+    <div id="cartEmpty" style="text-align:center;color:#777;padding:45px 10px">Your cart is empty.</div>
+    <div id="cartBottom" style="display:none">
+      <div class="total"><span>Total</span><span id="cartTotal">₹0</span></div>
+      <button class="checkout" onclick="showToast('Checkout will be connected next')">PROCEED TO CHECKOUT</button>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const product={id:9,name:'Black Floral Midi Dress',cat:'Dresses',price:899,old:1999,img:'black-floral-dress.png',sizes:['S','M','L','XL','XXL']};
+let selectedSize='',liked=false,cart=JSON.parse(localStorage.getItem('rivoxCart')||'[]');
+
+function money(n){return '₹'+n.toLocaleString('en-IN')}
+function renderProduct(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase();
+  const match=!q||product.name.toLowerCase().includes(q)||product.cat.toLowerCase().includes(q);
+  document.getElementById('productGrid').innerHTML=match?`
+  <article class="card">
+    <span class="badge">SALE</span>
+    <button class="heart ${liked?'liked':''}" onclick="toggleLike()">${liked?'♥':'♡'}</button>
+    <img src="${product.img}" alt="${product.name}">
+    <div class="info">
+      <h3>${product.name}</h3>
+      <div class="price">${money(product.price)} <span class="old">${money(product.old)}</span><span class="off">55% OFF</span></div>
+      <div class="label">Select Size</div>
+      <div class="sizes">${product.sizes.map(s=>`<button class="size ${selectedSize===s?'selected':''}" onclick="selectSize('${s}')">${s}</button>`).join('')}</div>
+      <button class="add" onclick="addToCart()">ADD TO CART</button>
+    </div>
+  </article>`:'<p style="text-align:center;color:#777">Product not found.</p>';
+}
+function selectSize(s){selectedSize=s;renderProduct()}
+function toggleLike(){liked=!liked;renderProduct();showToast(liked?'Added to wishlist ♥':'Removed from wishlist')}
+function addToCart(){
+  if(!selectedSize){showToast('Please select a size first');return}
+  const item=cart.find(x=>x.id===product.id&&x.size===selectedSize);
+  if(item)item.qty++;else cart.push({id:product.id,qty:1,size:selectedSize});
+  saveCart();openCart();showToast('Added to cart 🛒');
+}
+function saveCart(){localStorage.setItem('rivoxCart',JSON.stringify(cart));renderCart();document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function changeQty(i,d){if(!cart[i])return;cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart()}
+function removeItem(i){cart.splice(i,1);saveCart()}
+function renderCart(){
+  const box=document.getElementById('cartItems'),empty=document.getElementById('cartEmpty'),bottom=document.getElementById('cartBottom');
+  if(!cart.length){box.innerHTML='';empty.style.display='block';bottom.style.display='none';return}
+  empty.style.display='none';bottom.style.display='block';
+  box.innerHTML=cart.map((x,i)=>`<div class="cart-item"><img src="${product.img}" alt="${product.name}"><div style="flex:1"><h4>${product.name}</h4><div>${money(product.price)}</div><div style="font-size:13px;color:#666;margin-top:5px">Size: <b>${x.size}</b></div><div class="qty"><button onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${i},1)">+</button><button class="remove" onclick="removeItem(${i})">Remove</button></div></div></div>`).join('');
+  document.getElementById('cartTotal').textContent=money(cart.reduce((s,x)=>s+product.price*x.qty,0));
+}
+function openCart(){document.getElementById('cartDrawer').classList.add('show');renderCart()}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('show')}
+function toggleSearch(){document.getElementById('searchbar').classList.toggle('open');if(document.getElementById('searchbar').classList.contains('open'))document.getElementById('searchInput').focus()}
+function scrollToProduct(){document.getElementById('shop').scrollIntoView({behavior:'smooth'});showToast('Wishlist is on the product ♥')}
+let toastTimer;
+function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1800)}
+renderProduct();saveCart();
+</script>
+</body>
+</html>
